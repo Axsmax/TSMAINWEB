@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Timeless Solutions | Services</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Explore the digital marketing, automation, and CRM services offered by Timeless Solutions.">
+  <link rel="canonical" href="https://timelesssolutions.vip/services">
+  <link rel="icon" href="/favicon.png">
+  <style>
+    :root{
+      --bg:#050507;
+      --surface:#111119;
+      --surface-alt:#181825;
+      --text:#F6F7FB;
+      --muted:#A4A7B7;
+      --gold:#C8A545;
+      --silver:#BFC3D8;
+      --radius:12px;
+      --max:1120px;
+      --space:clamp(16px,2vw,24px);
+      --transition:0.25s ease
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter,system-ui,Segoe UI,Arial;background:var(--bg);color:var(--text);line-height:1.6}
+    a{color:var(--silver);text-decoration:none;transition:color var(--transition),text-shadow var(--transition)}
+    a:hover{color:var(--gold);text-shadow:0 0 12px rgba(200,165,69,.45)}
+    .wrap{max-width:var(--max);margin:auto;padding:0 var(--space)}
+    header{position:sticky;top:0;background:rgba(5,5,7,.85);backdrop-filter:blur(12px);border-bottom:1px solid rgba(191,195,216,.2);z-index:5}
+    nav{display:flex;align-items:center;justify-content:space-between;height:64px}
+    nav .brand{font-weight:700;letter-spacing:.3px;color:var(--text);text-shadow:0 0 22px rgba(191,195,216,.55)}
+    nav ul{display:flex;gap:20px;list-style:none;margin:0;padding:0}
+    nav a{color:var(--silver)}
+    nav a[aria-current="page"],nav a:hover{color:var(--gold);text-shadow:0 0 16px rgba(200,165,69,.5)}
+    .btn{display:inline-block;padding:12px 20px;border-radius:999px;border:1px solid var(--silver);color:var(--silver);font-weight:600;transition:transform var(--transition),box-shadow var(--transition),color var(--transition),background var(--transition);text-shadow:0 0 12px rgba(191,195,216,.45)}
+    .btn.primary{background:var(--gold);border-color:var(--gold);color:var(--bg);text-shadow:0 0 20px rgba(200,165,69,.55);box-shadow:0 0 28px rgba(200,165,69,.45)}
+    .btn.primary:hover{transform:translateY(-2px);box-shadow:0 0 38px rgba(200,165,69,.65)}
+    .btn.ghost{background:rgba(17,17,25,.6);border-color:var(--silver);color:var(--silver)}
+    .btn.ghost:hover{color:var(--gold);border-color:var(--gold);box-shadow:0 0 28px rgba(200,165,69,.45)}
+    .hero{padding:80px 0;background:radial-gradient(circle at top left,rgba(200,165,69,.2),transparent 55%),radial-gradient(circle at bottom right,rgba(191,195,216,.18),transparent 60%),var(--bg)}
+    .hero h1{font-size:clamp(32px,4.5vw,56px);margin:0 0 12px;text-shadow:0 0 28px rgba(200,165,69,.45)}
+    .hero p{font-size:clamp(16px,2vw,20px);color:var(--muted);max-width:720px}
+    .row{display:grid;grid-template-columns:1fr 1fr;gap:32px}
+    @media (max-width:900px){.row{grid-template-columns:1fr}}
+    .card{background:linear-gradient(135deg,rgba(17,17,25,.92),rgba(5,5,7,.92));border:1px solid rgba(191,195,216,.18);border-radius:var(--radius);padding:24px;box-shadow:0 20px 45px rgba(0,0,0,.55);position:relative;overflow:hidden}
+    .card::before{content:"";position:absolute;inset:1px;border-radius:calc(var(--radius) - 1px);border:1px solid rgba(200,165,69,.12);opacity:.8}
+    .card>*{position:relative;z-index:1}
+    .section{padding:72px 0;position:relative}
+    .section::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at top,rgba(200,165,69,.08),transparent 60%),linear-gradient(180deg,rgba(12,12,18,.95),rgba(5,5,7,.95));z-index:0}
+    .section .wrap{position:relative;z-index:1}
+    h2{font-size:clamp(24px,3vw,36px);margin:0 0 8px;text-shadow:0 0 24px rgba(192,196,214,.5)}
+    h3{margin:0 0 12px;font-size:20px;text-shadow:0 0 18px rgba(192,196,214,.45)}
+    .muted{color:var(--muted)}
+    ul,ol{margin:0;padding-left:20px}
+    li{margin-bottom:8px}
+    strong{color:var(--silver)}
+    .grid{display:grid;gap:20px;grid-template-columns:repeat(5,1fr)}
+    @media (max-width:1100px){.grid{grid-template-columns:repeat(3,1fr)}}
+    @media (max-width:700px){.grid{grid-template-columns:repeat(1,1fr)}}
+    .service h3{margin:8px 0 6px;font-size:18px}
+    .badge{display:inline-block;background:rgba(17,17,25,.7);border:1px solid rgba(200,165,69,.4);border-radius:999px;padding:6px 12px;margin:6px 6px 0 0;font-size:13px;color:var(--gold);text-shadow:0 0 14px rgba(200,165,69,.45);transition:box-shadow var(--transition),transform var(--transition),background var(--transition)}
+    .badge:hover{transform:translateY(-1px);box-shadow:0 0 24px rgba(200,165,69,.45);background:rgba(200,165,69,.15)}
+    input,select,textarea{width:100%;background:rgba(17,17,25,.9);border:1px solid rgba(191,195,216,.2);border-radius:var(--radius);padding:12px;color:var(--text);font-family:inherit;font-size:16px;transition:border var(--transition),box-shadow var(--transition),background var(--transition)}
+    input:focus,select:focus,textarea:focus{outline:none;border-color:var(--gold);box-shadow:0 0 24px rgba(200,165,69,.45);background:rgba(24,24,36,.95)}
+    textarea{min-height:140px;resize:vertical}
+    input::placeholder,textarea::placeholder{color:rgba(160,163,184,.7)}
+    footer{padding:48px 0;color:var(--muted);background:rgba(5,5,7,.95);border-top:1px solid rgba(191,195,216,.2)}
+    footer a{color:var(--silver);text-shadow:0 0 16px rgba(191,195,216,.45)}
+    footer a:hover{color:var(--gold)}
+  </style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <nav>
+      <a class="brand" href="index.html">Timeless Solutions</a>
+      <ul>
+        <li><a href="services.html" aria-current="page">Services</a></li>
+        <li><a href="index.html#results">Results</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a class="btn primary" href="contact.html">Book Strategy Call</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <h1>Services Built to Save Your Time</h1>
+      <p>Every engagement pairs strategy, systems, and execution so your team can focus on relationships while the pipeline keeps moving.</p>
+      <div style="margin-top:18px;display:flex;gap:12px;flex-wrap:wrap;">
+        <a class="btn primary" href="contact.html">Book Strategy Call</a>
+        <a class="btn ghost" href="#seo">Explore deliverables</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>How We Partner</h2>
+      <p class="muted">Choose a service below to see the specific problems we solve, what we deliver, and the KPIs we own.</p>
+      <div class="grid" style="margin-top:18px;">
+        <div class="card service">
+          <h3>SEO Optimization</h3>
+          <p>Rank higher with a technical foundation and content that matches intent.</p>
+          <a class="badge" href="#seo">View details →</a>
+        </div>
+        <div class="card service">
+          <h3>Content Marketing</h3>
+          <p>Plan, produce, and repurpose content that builds authority and trust.</p>
+          <a class="badge" href="#content">View details →</a>
+        </div>
+        <div class="card service">
+          <h3>Social Media Strategy</h3>
+          <p>Grow community with consistent storytelling and engagement systems.</p>
+          <a class="badge" href="#social">View details →</a>
+        </div>
+        <div class="card service">
+          <h3>Paid Ads (PPC)</h3>
+          <p>Launch and scale campaigns that deliver predictable, high-intent leads.</p>
+          <a class="badge" href="#paid">View details →</a>
+        </div>
+        <div class="card service">
+          <h3>CRM & Automation</h3>
+          <p>Capture every lead with nurture sequences, tasking, and reporting.</p>
+          <a class="badge" href="#crm">View details →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="seo">
+    <div class="wrap row">
+      <div class="card">
+        <h2>SEO Optimization</h2>
+        <p class="muted">Problem we solve</p>
+        <p>Your best prospects can’t convert if they never find you. We diagnose technical blockers and content gaps that limit organic visibility.</p>
+        <p><strong>KPI focus:</strong> Organic traffic growth, rankings for revenue-driving keywords, and conversions from search.</p>
+      </div>
+      <div class="card">
+        <h3>What we deliver</h3>
+        <ul>
+          <li>Technical SEO audit with prioritized fixes</li>
+          <li>Keyword research and content roadmap</li>
+          <li>On-page optimization across core pages</li>
+          <li>Analytics dashboard to track search gains</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="content">
+    <div class="wrap row">
+      <div class="card">
+        <h2>Content Marketing</h2>
+        <p class="muted">Problem we solve</p>
+        <p>Random acts of content waste hours. We establish a strategic narrative that attracts, educates, and nurtures ideal clients.</p>
+        <p><strong>KPI focus:</strong> Engagement, lead quality, and assisted revenue influenced by content.</p>
+      </div>
+      <div class="card">
+        <h3>What we deliver</h3>
+        <ul>
+          <li>Editorial strategy tied to your buyer journey</li>
+          <li>Content production across blog, email, and video</li>
+          <li>Repurposing framework for social and ads</li>
+          <li>Performance reporting with next-step insights</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="social">
+    <div class="wrap row">
+      <div class="card">
+        <h2>Social Media Strategy</h2>
+        <p class="muted">Problem we solve</p>
+        <p>Inconsistent posting erodes trust. We create a rhythm that keeps your brand top-of-mind with the right stories and offers.</p>
+        <p><strong>KPI focus:</strong> Audience growth, engagement rate, and pipeline sourced from social.</p>
+      </div>
+      <div class="card">
+        <h3>What we deliver</h3>
+        <ul>
+          <li>Channel-by-channel playbooks and content pillars</li>
+          <li>Creative production templates and caption banks</li>
+          <li>Community management workflows and alerts</li>
+          <li>Monthly performance review with optimizations</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="paid">
+    <div class="wrap row">
+      <div class="card">
+        <h2>Paid Ads (PPC)</h2>
+        <p class="muted">Problem we solve</p>
+        <p>Ad spend without clarity drains budgets. We align offers, targeting, and tracking so every dollar is accountable.</p>
+        <p><strong>KPI focus:</strong> Cost per lead, pipeline velocity, and return on ad spend.</p>
+      </div>
+      <div class="card">
+        <h3>What we deliver</h3>
+        <ul>
+          <li>Campaign architecture for Google, Meta, and LinkedIn</li>
+          <li>High-converting creative and landing page testing</li>
+          <li>Conversion tracking and CRM integration</li>
+          <li>Weekly performance dashboards and insights</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="crm">
+    <div class="wrap row">
+      <div class="card">
+        <h2>CRM &amp; Automation</h2>
+        <p class="muted">Problem we solve</p>
+        <p>Manual follow-up lets hot leads slip away. We build automations that nurture, alert, and remind so every conversation stays warm.</p>
+        <p><strong>KPI focus:</strong> Speed-to-lead, follow-up completion, and close rates.</p>
+      </div>
+      <div class="card">
+        <h3>What we deliver</h3>
+        <ul>
+          <li>CRM implementation or optimization</li>
+          <li>Lead routing, pipelines, and task automation</li>
+          <li>Multi-channel nurture sequences</li>
+          <li>Executive dashboards for pipeline health</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap" style="display:flex;flex-direction:column;align-items:flex-start;gap:16px;">
+      <h2>Ready to scope your project?</h2>
+      <p class="muted">Share your goals and we’ll map the fastest path to organized growth.</p>
+      <a class="btn primary" href="contact.html">Book a strategy call</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap" style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px">
+    <div>© <span id="y"></span> Timeless Solutions</div>
+    <div><a href="/privacy">Privacy</a></div>
+  </div>
+  <script>document.getElementById('y').textContent=new Date().getFullYear()</script>
+</footer>
+</body>
+</html>

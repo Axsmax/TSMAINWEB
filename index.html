@@ -9,48 +9,77 @@
   <link rel="icon" href="/favicon.png">
   <style>
     :root{
-      --black:#0B0B0C;--gold:#C8A545;--off:#F7F7F5;--gray:#6C6C70;
-      --radius:12px;--max:1120px;--space:clamp(16px,2vw,24px)
+      --bg:#050507;
+      --surface:#111119;
+      --surface-alt:#181825;
+      --text:#F6F7FB;
+      --muted:#A4A7B7;
+      --gold:#C8A545;
+      --silver:#BFC3D8;
+      --radius:12px;
+      --max:1120px;
+      --space:clamp(16px,2vw,24px);
+      --transition:0.25s ease
     }
-    *{box-sizing:border-box} body{margin:0;font-family:Inter,system-ui,Segoe UI,Arial;
-      color:var(--black);background:var(--off);line-height:1.5}
-    a{color:inherit;text-decoration:none}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter,system-ui,Segoe UI,Arial;background:var(--bg);color:var(--text);line-height:1.6}
+    a{color:var(--silver);text-decoration:none;transition:color var(--transition),text-shadow var(--transition)}
+    a:hover{color:var(--gold);text-shadow:0 0 12px rgba(200,165,69,.45)}
     .wrap{max-width:var(--max);margin:auto;padding:0 var(--space)}
-    header{position:sticky;top:0;background:#fff;border-bottom:1px solid #eee;z-index:5}
+    header{position:sticky;top:0;background:rgba(5,5,7,.85);backdrop-filter:blur(12px);border-bottom:1px solid rgba(191,195,216,.2);z-index:5}
     nav{display:flex;align-items:center;justify-content:space-between;height:64px}
-    nav .brand{font-weight:700;letter-spacing:.3px}
+    nav .brand{font-weight:700;letter-spacing:.3px;color:var(--text);text-shadow:0 0 22px rgba(191,195,216,.55)}
     nav ul{display:flex;gap:20px;list-style:none;margin:0;padding:0}
-    .btn{display:inline-block;padding:12px 18px;border-radius:999px;border:1px solid var(--gold)}
-    .btn.primary{background:var(--gold);color:#000;border-color:var(--gold);font-weight:600}
-    .btn.ghost{background:transparent;color:var(--black)}
-    .hero{padding:80px 0;background:#fff}
-    .hero h1{font-size:clamp(32px,4.5vw,56px);margin:0 0 12px}
-    .hero p{font-size:clamp(16px,2vw,20px);color:#333;max-width:720px}
+    nav a{color:var(--silver)}
+    nav a[aria-current="page"],nav a:hover{color:var(--gold);text-shadow:0 0 16px rgba(200,165,69,.5)}
+    .btn{display:inline-block;padding:12px 20px;border-radius:999px;border:1px solid var(--silver);color:var(--silver);font-weight:600;transition:transform var(--transition),box-shadow var(--transition),color var(--transition),background var(--transition);text-shadow:0 0 12px rgba(191,195,216,.45)}
+    .btn.primary{background:var(--gold);border-color:var(--gold);color:var(--bg);text-shadow:0 0 20px rgba(200,165,69,.55);box-shadow:0 0 28px rgba(200,165,69,.45)}
+    .btn.primary:hover{transform:translateY(-2px);box-shadow:0 0 38px rgba(200,165,69,.65)}
+    .btn.ghost{background:rgba(17,17,25,.6);border-color:var(--silver);color:var(--silver)}
+    .btn.ghost:hover{color:var(--gold);border-color:var(--gold);box-shadow:0 0 28px rgba(200,165,69,.45)}
+    .hero{padding:80px 0;background:radial-gradient(circle at top left,rgba(200,165,69,.2),transparent 55%),radial-gradient(circle at bottom right,rgba(191,195,216,.18),transparent 60%),var(--bg)}
+    .hero h1{font-size:clamp(32px,4.5vw,56px);margin:0 0 12px;text-shadow:0 0 28px rgba(200,165,69,.45)}
+    .hero p{font-size:clamp(16px,2vw,20px);color:var(--muted);max-width:720px}
     .row{display:grid;grid-template-columns:1fr 1fr;gap:32px}
     @media (max-width:900px){.row{grid-template-columns:1fr}}
-    .card{background:#fff;border:1px solid #eee;border-radius:var(--radius);padding:24px}
-    .section{padding:72px 0}
-    h2{font-size:clamp(24px,3vw,36px);margin:0 0 8px}
-    .muted{color:#6C6C70}
+    .card{background:linear-gradient(135deg,rgba(17,17,25,.92),rgba(5,5,7,.92));border:1px solid rgba(191,195,216,.18);border-radius:var(--radius);padding:24px;box-shadow:0 20px 45px rgba(0,0,0,.55);position:relative;overflow:hidden}
+    .card::before{content:"";position:absolute;inset:1px;border-radius:calc(var(--radius) - 1px);border:1px solid rgba(200,165,69,.12);opacity:.8}
+    .card>*{position:relative;z-index:1}
+    .section{padding:72px 0;position:relative}
+    .section::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at top,rgba(200,165,69,.08),transparent 60%),linear-gradient(180deg,rgba(12,12,18,.95),rgba(5,5,7,.95));z-index:0}
+    .section .wrap{position:relative;z-index:1}
+    h2{font-size:clamp(24px,3vw,36px);margin:0 0 8px;text-shadow:0 0 24px rgba(192,196,214,.5)}
+    h3{margin:0 0 12px;font-size:20px;text-shadow:0 0 18px rgba(192,196,214,.45)}
+    .muted{color:var(--muted)}
+    ul,ol{margin:0;padding-left:20px}
+    li{margin-bottom:8px}
+    strong{color:var(--silver)}
     .grid{display:grid;gap:20px;grid-template-columns:repeat(5,1fr)}
     @media (max-width:1100px){.grid{grid-template-columns:repeat(3,1fr)}}
     @media (max-width:700px){.grid{grid-template-columns:repeat(1,1fr)}}
     .service h3{margin:8px 0 6px;font-size:18px}
-    .badge{display:inline-block;background:#fff;border:1px solid #eee;border-radius:999px;padding:6px 10px;margin:6px 6px 0 0;font-size:13px}
-    .cta{background:var(--black);color:#fff;border-radius:var(--radius);padding:32px}
-    footer{padding:48px 0;color:#444}
+    .badge{display:inline-block;background:rgba(17,17,25,.7);border:1px solid rgba(200,165,69,.4);border-radius:999px;padding:6px 12px;margin:6px 6px 0 0;font-size:13px;color:var(--gold);text-shadow:0 0 14px rgba(200,165,69,.45);transition:box-shadow var(--transition),transform var(--transition),background var(--transition)}
+    .badge:hover{transform:translateY(-1px);box-shadow:0 0 24px rgba(200,165,69,.45);background:rgba(200,165,69,.15)}
+    .cta{background:linear-gradient(135deg,rgba(200,165,69,.2),rgba(191,195,216,.15));color:var(--text);border-radius:var(--radius);padding:32px;border:1px solid rgba(200,165,69,.35);box-shadow:0 25px 55px rgba(0,0,0,.6)}
+    input,select,textarea{width:100%;background:rgba(17,17,25,.9);border:1px solid rgba(191,195,216,.2);border-radius:var(--radius);padding:12px;color:var(--text);font-family:inherit;font-size:16px;transition:border var(--transition),box-shadow var(--transition),background var(--transition)}
+    input:focus,select:focus,textarea:focus{outline:none;border-color:var(--gold);box-shadow:0 0 24px rgba(200,165,69,.45);background:rgba(24,24,36,.95)}
+    textarea{min-height:140px;resize:vertical}
+    input::placeholder,textarea::placeholder{color:rgba(160,163,184,.7)}
+    footer{padding:48px 0;color:var(--muted);background:rgba(5,5,7,.95);border-top:1px solid rgba(191,195,216,.2)}
+    footer a{color:var(--silver);text-shadow:0 0 16px rgba(191,195,216,.45)}
+    footer a:hover{color:var(--gold)}
   </style>
 </head>
 <body>
 <header>
   <div class="wrap">
     <nav>
-      <div class="brand">Timeless Solutions</div>
+      <a class="brand" href="index.html" aria-current="page">Timeless Solutions</a>
       <ul>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#results">Results</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a class="btn primary" href="#contact">Book Strategy Call</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="index.html#results">Results</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a class="btn primary" href="contact.html">Book Strategy Call</a></li>
       </ul>
     </nav>
   </div>
@@ -62,7 +91,7 @@
     <div class="wrap">
       <h1>Time-Saving Marketing & CRM Systems</h1>
       <p>We build data-driven strategy, content, and automations so you stop losing time (and leads) and start scaling with clarity.</p>
-      <div style="margin-top:18px;display:flex;gap:12px;">
+      <div style="margin-top:18px;display:flex;gap:12px;flex-wrap:wrap;">
         <a class="btn primary" href="#contact">Book Strategy Call</a>
         <a class="btn ghost" href="#how">See How It Works</a>
       </div>
@@ -103,27 +132,27 @@
         <div class="card service">
           <h3>SEO Optimization</h3>
           <p>Be found where it matters. Technical fixes + content that ranks.</p>
-          <a class="badge" href="/services#seo">Learn more →</a>
+          <a class="badge" href="services.html#seo">Learn more →</a>
         </div>
         <div class="card service">
           <h3>Content Marketing</h3>
           <p>Purposeful content that turns attention into trust and action.</p>
-          <a class="badge" href="/services#content">Learn more →</a>
+          <a class="badge" href="services.html#content">Learn more →</a>
         </div>
         <div class="card service">
           <h3>Social Media Strategy</h3>
           <p>Community-driven growth aligned to your brand voice.</p>
-          <a class="badge" href="/services#social">Learn more →</a>
+          <a class="badge" href="services.html#social">Learn more →</a>
         </div>
         <div class="card service">
           <h3>Paid Ads (PPC)</h3>
           <p>High-intent Google & Meta campaigns with clear KPIs.</p>
-          <a class="badge" href="/services#paid">Learn more →</a>
+          <a class="badge" href="services.html#paid">Learn more →</a>
         </div>
         <div class="card service">
           <h3>CRM & Automation</h3>
           <p>Stop losing leads. Pipeline, nurture, and reminders—24/7.</p>
-          <a class="badge" href="/services#crm">Learn more →</a>
+          <a class="badge" href="services.html#crm">Learn more →</a>
         </div>
       </div>
     </div>
@@ -178,17 +207,17 @@
         <h2>Contact</h2>
         <form action="https://formspree.io/f/your-id" method="POST">
           <div class="row" style="gap:16px">
-            <input name="name" placeholder="Full name" required class="card" style="padding:12px">
-            <input name="email" type="email" placeholder="Email" required class="card" style="padding:12px">
+            <input name="name" placeholder="Full name" required>
+            <input name="email" type="email" placeholder="Email" required>
           </div>
           <div class="row" style="gap:16px;margin-top:12px">
-            <input name="phone" placeholder="Phone" class="card" style="padding:12px">
-            <select name="service" class="card" style="padding:12px">
+            <input name="phone" placeholder="Phone">
+            <select name="service">
               <option>SEO</option><option>Content</option><option>Social</option>
               <option>Paid Ads</option><option>CRM & Automation</option>
             </select>
           </div>
-          <textarea name="message" placeholder="What do you need?" class="card" style="margin-top:12px;height:120px;padding:12px"></textarea>
+          <textarea name="message" placeholder="What do you need?" style="margin-top:12px;height:140px"></textarea>
           <div style="margin-top:12px"><button class="btn primary" type="submit">Send</button></div>
         </form>
       </div>
