@@ -8,61 +8,7 @@
   <link rel="canonical" href="https://timelesssolutions.vip/about">
   <link rel="icon" href="/favicon.png">
   <style>
-    :root{
-      --bg:#050507;
-      --surface:#111119;
-      --surface-alt:#181825;
-      --text:#F6F7FB;
-      --muted:#A4A7B7;
-      --gold:#C8A545;
-      --silver:#BFC3D8;
-      --radius:12px;
-      --max:1120px;
-      --space:clamp(16px,2vw,24px);
-      --transition:0.25s ease
-    }
-    *{box-sizing:border-box}
-    body{margin:0;font-family:Inter,system-ui,Segoe UI,Arial;background:var(--bg);color:var(--text);line-height:1.6}
-    a{color:var(--silver);text-decoration:none;transition:color var(--transition),text-shadow var(--transition)}
-    a:hover{color:var(--gold);text-shadow:0 0 12px rgba(200,165,69,.45)}
-    .wrap{max-width:var(--max);margin:auto;padding:0 var(--space)}
-    header{position:sticky;top:0;background:rgba(5,5,7,.85);backdrop-filter:blur(12px);border-bottom:1px solid rgba(191,195,216,.2);z-index:5}
-    nav{display:flex;align-items:center;justify-content:space-between;height:64px}
-    nav .brand{font-weight:700;letter-spacing:.3px;color:var(--text);text-shadow:0 0 22px rgba(191,195,216,.55)}
-    nav ul{display:flex;gap:20px;list-style:none;margin:0;padding:0}
-    nav a{color:var(--silver)}
-    nav a[aria-current="page"],nav a:hover{color:var(--gold);text-shadow:0 0 16px rgba(200,165,69,.5)}
-    .btn{display:inline-block;padding:12px 20px;border-radius:999px;border:1px solid var(--silver);color:var(--silver);font-weight:600;transition:transform var(--transition),box-shadow var(--transition),color var(--transition),background var(--transition);text-shadow:0 0 12px rgba(191,195,216,.45)}
-    .btn.primary{background:var(--gold);border-color:var(--gold);color:var(--bg);text-shadow:0 0 20px rgba(200,165,69,.55);box-shadow:0 0 28px rgba(200,165,69,.45)}
-    .btn.primary:hover{transform:translateY(-2px);box-shadow:0 0 38px rgba(200,165,69,.65)}
-    .btn.ghost{background:rgba(17,17,25,.6);border-color:var(--silver);color:var(--silver)}
-    .btn.ghost:hover{color:var(--gold);border-color:var(--gold);box-shadow:0 0 28px rgba(200,165,69,.45)}
-    .hero{padding:80px 0;background:radial-gradient(circle at top left,rgba(200,165,69,.2),transparent 55%),radial-gradient(circle at bottom right,rgba(191,195,216,.18),transparent 60%),var(--bg)}
-    .hero h1{font-size:clamp(32px,4.5vw,56px);margin:0 0 12px;text-shadow:0 0 28px rgba(200,165,69,.45)}
-    .hero p{font-size:clamp(16px,2vw,20px);color:var(--muted);max-width:720px}
-    .row{display:grid;grid-template-columns:1fr 1fr;gap:32px}
-    @media (max-width:900px){.row{grid-template-columns:1fr}}
-    .card{background:linear-gradient(135deg,rgba(17,17,25,.92),rgba(5,5,7,.92));border:1px solid rgba(191,195,216,.18);border-radius:var(--radius);padding:24px;box-shadow:0 20px 45px rgba(0,0,0,.55);position:relative;overflow:hidden}
-    .card::before{content:"";position:absolute;inset:1px;border-radius:calc(var(--radius) - 1px);border:1px solid rgba(200,165,69,.12);opacity:.8}
-    .card>*{position:relative;z-index:1}
-    .section{padding:72px 0;position:relative}
-    .section::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at top,rgba(200,165,69,.08),transparent 60%),linear-gradient(180deg,rgba(12,12,18,.95),rgba(5,5,7,.95));z-index:0}
-    .section .wrap{position:relative;z-index:1}
-    h2{font-size:clamp(24px,3vw,36px);margin:0 0 8px;text-shadow:0 0 24px rgba(192,196,214,.5)}
-    h3{margin:0 0 12px;font-size:20px;text-shadow:0 0 18px rgba(192,196,214,.45)}
-    .muted{color:var(--muted)}
-    ul,ol{margin:0;padding-left:20px}
-    li{margin-bottom:8px}
-    strong{color:var(--silver)}
-    .badge{display:inline-block;background:rgba(17,17,25,.7);border:1px solid rgba(200,165,69,.4);border-radius:999px;padding:6px 12px;margin:6px 6px 0 0;font-size:13px;color:var(--gold);text-shadow:0 0 14px rgba(200,165,69,.45);transition:box-shadow var(--transition),transform var(--transition),background var(--transition)}
-    .badge:hover{transform:translateY(-1px);box-shadow:0 0 24px rgba(200,165,69,.45);background:rgba(200,165,69,.15)}
-    input,select,textarea{width:100%;background:rgba(17,17,25,.9);border:1px solid rgba(191,195,216,.2);border-radius:var(--radius);padding:12px;color:var(--text);font-family:inherit;font-size:16px;transition:border var(--transition),box-shadow var(--transition),background var(--transition)}
-    input:focus,select:focus,textarea:focus{outline:none;border-color:var(--gold);box-shadow:0 0 24px rgba(200,165,69,.45);background:rgba(24,24,36,.95)}
-    textarea{min-height:140px;resize:vertical}
-    input::placeholder,textarea::placeholder{color:rgba(160,163,184,.7)}
-    footer{padding:48px 0;color:var(--muted);background:rgba(5,5,7,.95);border-top:1px solid rgba(191,195,216,.2)}
-    footer a{color:var(--silver);text-shadow:0 0 16px rgba(191,195,216,.45)}
-    footer a:hover{color:var(--gold)}
+    :root{ 
   </style>
 </head>
 <body>
