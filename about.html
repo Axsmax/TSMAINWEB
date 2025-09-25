@@ -28,6 +28,11 @@
     .btn.primary{background:var(--gold);color:var(--surface);border-color:var(--gold);font-weight:600}
     .btn.ghost{background:transparent;color:var(--text)}
     .btn:hover{transform:translateY(-2px);box-shadow:0 12px 24px rgba(200,165,69,.3)}
+    body.ready [data-animate]{opacity:0;transform:translateY(28px);transition:opacity .9s ease,transform .9s ease}
+    body.ready [data-animate].in-view{opacity:1;transform:translateY(0)}
+    @media (prefers-reduced-motion:reduce){
+      body.ready [data-animate]{opacity:1 !important;transform:none !important;transition:none !important}
+    }
     .hero{padding:80px 0;background:linear-gradient(135deg,var(--surface) 0%,#1F1F27 100%);
       border-bottom:1px solid rgba(244,245,248,.06)}
     .hero h1{font-size:clamp(32px,4.5vw,56px);margin:0 0 12px}
@@ -61,7 +66,7 @@
 </header>
 
 <main>
-  <section class="hero">
+  <section class="hero" data-animate>
     <div class="wrap">
       <h1>About Timeless Solutions</h1>
       <p>We build marketing and CRM systems that respect your time. Our team blends strategy, creativity, and automation so every lead is nurtured from first touch to closed deal.</p>
@@ -72,7 +77,7 @@
     </div>
   </section>
 
-  <section class="section">
+  <section class="section" data-animate>
     <div class="wrap row">
       <div class="card">
         <h2>Our Story</h2>
@@ -90,7 +95,7 @@
     </div>
   </section>
 
-  <section class="section">
+  <section class="section" data-animate>
     <div class="wrap row">
       <div class="card">
         <h2>Values We Operate By</h2>
@@ -109,14 +114,14 @@
     </div>
   </section>
 
-  <section class="section">
+  <section class="section" data-animate>
     <div class="wrap card">
       <h2>Our Promise</h2>
       <p>We partner closely, stay proactive with communication, and act like an extension of your in-house team. Every engagement includes clear roadmaps, documented processes, and the insights you need to scale with confidence.</p>
     </div>
   </section>
 
-  <section class="section">
+  <section class="section" data-animate>
     <div class="wrap" style="display:flex;flex-direction:column;align-items:flex-start;gap:16px;">
       <h2>Let’s work together</h2>
       <p class="muted">Tell us where you’re losing time and we’ll design a system that gives it back.</p>
@@ -130,7 +135,30 @@
     <div>© <span id="y"></span> Timeless Solutions</div>
     <div><a href="privacy.html">Privacy</a></div>
   </div>
-  <script>document.getElementById('y').textContent=new Date().getFullYear()</script>
+  <script>
+    document.getElementById('y').textContent=new Date().getFullYear();
+    document.addEventListener('DOMContentLoaded',()=>{
+      document.body.classList.add('ready');
+      const elements=document.querySelectorAll('[data-animate]');
+      if(!('IntersectionObserver'in window)){
+        elements.forEach(el=>el.classList.add('in-view'));
+        return;
+      }
+      const observer=new IntersectionObserver((entries)=>{
+        entries.forEach(entry=>{
+          if(entry.isIntersecting){
+            entry.target.classList.add('in-view');
+            observer.unobserve(entry.target);
+          }
+        });
+      },{threshold:.15,rootMargin:'0px 0px -80px'});
+      elements.forEach((el,index)=>{
+        const delay=el.dataset.animateDelay?Number(el.dataset.animateDelay):Math.min(index*.08,.6);
+        el.style.transitionDelay=`${delay}s`;
+        observer.observe(el);
+      });
+    });
+  </script>
 </footer>
 </body>
 </html>
