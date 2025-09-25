@@ -20,7 +20,7 @@
     .wrap{max-width:var(--max);margin:auto;padding:0 var(--space)}
     header{position:sticky;top:0;background:rgba(11,11,12,.95);backdrop-filter:blur(14px);
       border-bottom:1px solid rgba(244,245,248,.06);z-index:5}
-    nav{display:flex;align-items:center;justify-content:space-between;height:64px}
+    nav{display:flex;align-items:center;justify-content:space-between;height:64px;position:relative}
     nav .brand{font-weight:700;letter-spacing:.3px}
     nav ul{display:flex;gap:20px;list-style:none;margin:0;padding:0;flex-wrap:wrap}
     .btn{display:inline-block;padding:12px 18px;border-radius:999px;border:1px solid var(--gold);text-align:center;
@@ -28,6 +28,29 @@
     .btn.primary{background:var(--gold);color:var(--surface);border-color:var(--gold);font-weight:600}
     .btn.ghost{background:transparent;color:var(--text)}
     .btn:hover{transform:translateY(-2px);box-shadow:0 12px 24px rgba(200,165,69,.3)}
+    .menu-toggle{display:none;background:transparent;border:0;color:var(--text);cursor:pointer;padding:8px;border-radius:8px;
+      margin-left:auto;transition:background .2s ease}
+    .menu-toggle:hover{background:rgba(244,245,248,.08)}
+    .menu-toggle:focus-visible{outline:2px solid var(--gold);outline-offset:4px}
+    .menu-toggle span,
+    .menu-toggle span::before,
+    .menu-toggle span::after{display:block;width:22px;height:2px;background:currentColor;border-radius:999px;
+      transition:transform .3s ease,opacity .3s ease}
+    .menu-toggle span{position:relative}
+    .menu-toggle span::before,
+    .menu-toggle span::after{content:"";position:absolute;left:0}
+    .menu-toggle span::before{top:-6px}
+    .menu-toggle span::after{top:6px}
+    nav.menu-open .menu-toggle span{background:transparent}
+    nav.menu-open .menu-toggle span::before{top:0;transform:rotate(45deg)}
+    nav.menu-open .menu-toggle span::after{top:0;transform:rotate(-45deg)}
+    .menu-close{display:inline-flex;align-items:center;justify-content:center;gap:6px;width:100%;padding:12px 18px;
+      border-radius:999px;border:1px solid rgba(244,245,248,.2);background:transparent;color:var(--text);font-weight:500;
+      cursor:pointer;transition:background .2s ease,border-color .2s ease}
+    .menu-close span[aria-hidden="true"]{font-size:18px;line-height:1}
+    .menu-close:hover{background:rgba(244,245,248,.08);border-color:rgba(244,245,248,.35)}
+    .menu-close:focus-visible{outline:2px solid var(--gold);outline-offset:4px}
+    .menu-close-item{display:none}
     body.ready [data-animate]{opacity:0;transform:translateY(28px);transition:opacity .9s ease,transform .9s ease}
     body.ready [data-animate].in-view{opacity:1;transform:translateY(0)}
     @media (prefers-reduced-motion:reduce){
@@ -55,10 +78,16 @@
     .schedule-card{display:flex;flex-direction:column;gap:12px}
     footer{padding:48px 0;color:var(--muted);border-top:1px solid rgba(244,245,248,.05)}
     @media (max-width:640px){
-      nav{flex-direction:column;align-items:stretch;height:auto;padding:12px 0;gap:12px}
-      nav ul{flex-direction:column;gap:12px}
+      nav{height:64px;padding:0}
+      nav .menu-toggle{display:flex;align-items:center;justify-content:center}
+      nav ul{display:none;position:absolute;top:64px;left:0;right:0;background:rgba(20,20,24,.97);
+        border:1px solid rgba(244,245,248,.08);border-radius:var(--radius);flex-direction:column;gap:16px;padding:20px;
+        box-shadow:var(--shadow);z-index:10}
+      nav.menu-open ul{display:flex}
       nav ul a{display:block;width:100%}
       nav ul .btn{width:100%}
+      nav ul .menu-close-item{display:block;border-top:1px solid rgba(244,245,248,.08);padding-top:12px;margin-top:4px}
+      .menu-close{margin-top:4px}
     }
   </style>
 </head>
@@ -67,11 +96,15 @@
   <div class="wrap">
     <nav>
       <a class="brand" href="index.html">Timeless Solutions</a>
-      <ul>
+      <button class="menu-toggle" type="button" aria-label="Toggle navigation" aria-controls="primary-nav" aria-expanded="false">
+        <span></span>
+      </button>
+      <ul id="primary-nav">
         <li><a href="services.html">Services</a></li>
         <li><a href="index.html#results">Results</a></li>
         <li><a href="about.html">About</a></li>
         <li><a class="btn primary" href="contact.html" aria-current="page">Book Strategy Call</a></li>
+        <li class="menu-close-item"><button class="menu-close" type="button" aria-label="Close menu">Close <span aria-hidden="true">✕</span></button></li>
       </ul>
     </nav>
   </div>
@@ -183,6 +216,37 @@
         el.style.transitionDelay=`${delay}s`;
         observer.observe(el);
       });
+      const nav=document.querySelector('header nav');
+      const toggle=nav?.querySelector('.menu-toggle');
+      const closeBtn=nav?.querySelector('.menu-close');
+      const menuLinks=nav?nav.querySelectorAll('ul a'):[];
+      if(nav&&toggle){
+        const closeMenu=()=>{
+          nav.classList.remove('menu-open');
+          toggle.setAttribute('aria-expanded','false');
+        };
+        const openMenu=()=>{
+          nav.classList.add('menu-open');
+          toggle.setAttribute('aria-expanded','true');
+        };
+        toggle.addEventListener('click',()=>{
+          nav.classList.contains('menu-open')?closeMenu():openMenu();
+        });
+        closeBtn?.addEventListener('click',closeMenu);
+        menuLinks.forEach(link=>{
+          link.addEventListener('click',closeMenu);
+        });
+        window.addEventListener('resize',()=>{
+          if(window.innerWidth>640&&nav.classList.contains('menu-open')){
+            closeMenu();
+          }
+        });
+        document.addEventListener('keydown',event=>{
+          if(event.key==='Escape'&&nav.classList.contains('menu-open')){
+            closeMenu();
+          }
+        });
+      }
     });
   </script>
 </footer>
