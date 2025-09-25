@@ -46,6 +46,8 @@
     input:focus, select:focus, textarea:focus{outline:none;border-color:var(--gold);
       box-shadow:0 0 0 3px rgba(200,165,69,.24)}
     textarea{min-height:140px;resize:vertical}
+    .booking-frame{width:100%;height:600px;border:0;border-radius:var(--radius);background:var(--surface)}
+    .schedule-card{display:flex;flex-direction:column;gap:12px}
     footer{padding:48px 0;color:var(--muted);border-top:1px solid rgba(244,245,248,.05)}
   </style>
 </head>
@@ -72,6 +74,20 @@
       <div style="margin-top:18px;display:flex;gap:12px;flex-wrap:wrap;">
         <a class="btn primary" href="#contact-form">Start the form</a>
         <a class="btn ghost" href="mailto:hello@timelesssolutions.vip">Email us directly</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="schedule">
+    <div class="wrap">
+      <div class="card schedule-card">
+        <div>
+          <h2>Schedule an appointment</h2>
+          <p class="muted">Reserve a strategy session directly on our calendar—pick the time that works best for you.</p>
+        </div>
+        <!-- Google Calendar Appointment Scheduling begin -->
+        <iframe class="booking-frame" src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ2uYryGejFTrG1EIaF0yw4kwi26X2AI7ecXmd6IKi3G-5BLBLdvuXWtpowxuwYf8o-lnR9FQZNl?gv=true" title="Timeless Solutions scheduling" loading="lazy"></iframe>
+        <!-- end Google Calendar Appointment Scheduling -->
       </div>
     </div>
   </section>
