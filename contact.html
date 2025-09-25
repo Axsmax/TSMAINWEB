@@ -20,10 +20,23 @@
     .wrap{max-width:var(--max);margin:auto;padding:0 var(--space)}
     header{position:sticky;top:0;background:rgba(11,11,12,.95);backdrop-filter:blur(14px);
       border-bottom:1px solid rgba(244,245,248,.06);z-index:5}
-    nav{display:flex;align-items:center;justify-content:space-between;height:64px}
+    nav{display:flex;align-items:center;gap:24px;height:64px}
     nav .brand{font-weight:700;letter-spacing:.3px}
-    nav ul{display:flex;gap:20px;list-style:none;margin:0;padding:0}
-    .btn{display:inline-block;padding:12px 18px;border-radius:999px;border:1px solid var(--gold);
+    nav ul{display:flex;gap:20px;list-style:none;margin:0 0 0 auto;padding:0;align-items:center}
+    .menu-toggle{display:none;align-items:center;justify-content:center;gap:6px;padding:8px 10px;border-radius:8px;border:1px solid transparent;background:transparent;color:var(--text);cursor:pointer;transition:background .2s ease,border-color .2s ease}
+    .menu-toggle:focus-visible{outline:2px solid var(--gold);outline-offset:4px}
+    .menu-toggle .bar{display:block;width:22px;height:2px;background:var(--text);transition:transform .3s ease,opacity .3s ease}
+    .menu-toggle .bar+.bar{margin-top:5px}
+    .menu-toggle[aria-expanded="true"]{background:rgba(244,245,248,.08);border-color:rgba(244,245,248,.18)}
+    .menu-toggle[aria-expanded="true"] .bar:nth-child(1){transform:translateY(7px) rotate(45deg)}
+    .menu-toggle[aria-expanded="true"] .bar:nth-child(2){opacity:0}
+    .menu-toggle[aria-expanded="true"] .bar:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+    .mobile-menu{display:none}
+    .mobile-menu .btn{width:100%}
+    .mobile-menu .menu-close{background:none;border:none;color:var(--muted);font-size:16px;display:flex;align-items:center;justify-content:center;gap:6px;padding:12px 0;cursor:pointer}
+    .mobile-menu .menu-close span{font-size:20px;line-height:1}
+    body.menu-open{overflow:hidden}
+    .btn{display:inline-block;padding:12px 18px;border-radius:999px;border:1px solid var(--gold);text-align:center;
       transition:transform .2s ease,box-shadow .2s ease}
     .btn.primary{background:var(--gold);color:var(--surface);border-color:var(--gold);font-weight:600}
     .btn.ghost{background:transparent;color:var(--text)}
@@ -54,6 +67,15 @@
     .booking-frame{width:100%;height:600px;border:0;border-radius:var(--radius);background:var(--surface)}
     .schedule-card{display:flex;flex-direction:column;gap:12px}
     footer{padding:48px 0;color:var(--muted);border-top:1px solid rgba(244,245,248,.05)}
+    @media (max-width:640px){
+      nav{justify-content:space-between;height:64px}
+      nav ul{display:none}
+      .menu-toggle{display:flex;flex-direction:column;background:rgba(244,245,248,.06);border-color:rgba(244,245,248,.12)}
+      .menu-toggle .bar{width:24px}
+      .mobile-menu{display:flex;flex-direction:column;gap:18px;position:fixed;top:64px;left:0;right:0;bottom:0;padding:32px var(--space) 48px;background:rgba(11,11,12,.98);backdrop-filter:blur(18px);border-top:1px solid rgba(244,245,248,.08);opacity:0;transform:translateY(-12px);pointer-events:none;transition:opacity .3s ease,transform .3s ease}
+      .mobile-menu.open{opacity:1;transform:translateY(0);pointer-events:auto}
+      .mobile-menu a{font-size:18px}
+    }
   </style>
 </head>
 <body>
@@ -61,6 +83,11 @@
   <div class="wrap">
     <nav>
       <a class="brand" href="index.html">Timeless Solutions</a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open navigation">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
       <ul>
         <li><a href="services.html">Services</a></li>
         <li><a href="index.html#results">Results</a></li>
@@ -68,6 +95,13 @@
         <li><a class="btn primary" href="contact.html" aria-current="page">Book Strategy Call</a></li>
       </ul>
     </nav>
+    <div class="mobile-menu" id="mobile-menu">
+      <a href="services.html">Services</a>
+      <a href="index.html#results">Results</a>
+      <a href="about.html">About</a>
+      <a class="btn primary" href="contact.html" aria-current="page">Book Strategy Call</a>
+      <button type="button" class="menu-close" aria-label="Close navigation">Close <span aria-hidden="true">×</span></button>
+    </div>
   </div>
 </header>
 
@@ -178,6 +212,26 @@
         observer.observe(el);
       });
     });
+    const toggle=document.querySelector('.menu-toggle');
+    const menu=document.getElementById('mobile-menu');
+    if(toggle&&menu){
+      const closeBtn=menu.querySelector('.menu-close');
+      const links=menu.querySelectorAll('a');
+      const setState=open=>{
+        toggle.setAttribute('aria-expanded',open);
+        menu.classList.toggle('open',open);
+        document.body.classList.toggle('menu-open',open);
+      };
+      toggle.addEventListener('click',()=>{
+        const open=toggle.getAttribute('aria-expanded')!=='true';
+        setState(open);
+      });
+      closeBtn&&closeBtn.addEventListener('click',()=>setState(false));
+      links.forEach(link=>link.addEventListener('click',()=>setState(false)));
+      document.addEventListener('keydown',event=>{
+        if(event.key==='Escape'){setState(false);}
+      });
+    }
   </script>
 </footer>
 </body>
