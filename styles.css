@@ -16,3 +16,21 @@
   .pricing-promotional{font-size:2.5rem;}
   .pricing-display{flex-direction:column;gap:1.25rem;}
 }
+
+/* Presentation slider */
+.presentation .wrap{display:flex;flex-direction:column;gap:32px;}
+.presentation .deck{position:relative;}
+.presentation .slide{display:none;opacity:0;transition:opacity .4s ease;}
+.presentation .slide.is-active{display:block;opacity:1;}
+.presentation .slide h1,.presentation .slide h2{margin-top:0;}
+.presentation .slide blockquote{font-size:1.2rem;line-height:1.6;border-left:4px solid var(--accent);padding-left:16px;margin:16px 0;}
+.presentation .slide ul{display:flex;flex-direction:column;gap:10px;margin:18px 0 0 0;padding-left:20px;}
+.presentation .slide ul.tight{gap:6px;margin-top:8px;}
+.slider-meta{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;}
+.slider-controls{display:flex;gap:12px;}
+.slide-indicator{font-weight:600;}
+.slider-controls .btn[disabled]{opacity:.45;cursor:not-allowed;}
+@media (max-width:768px){
+  .presentation .wrap{gap:24px;}
+  .presentation .slide{padding:24px;}
+}
