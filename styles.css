@@ -38,3 +38,18 @@
 .brand{display:inline-flex;align-items:center;gap:8px;}
 .brand img{height:var(--logo-height);width:auto;display:block;}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
+
+/* Profile page styles */
+.profile-hero{padding:clamp(32px,8vw,80px) var(--space) clamp(64px,10vw,120px);} 
+.profile-card{background:var(--surface);border-radius:var(--radius);padding:clamp(20px,4vw,32px);box-shadow:var(--shadow);display:flex;flex-direction:column;align-items:center;gap:18px;text-align:center;max-width:620px;margin:0 auto;} 
+.profile-name{font-size:clamp(36px,10vw,56px);letter-spacing:-.01em;margin:0;} 
+.profile-photo-frame{width:min(360px,88vw);aspect-ratio:1;overflow:hidden;border-radius:18px;border:2px solid var(--surface-raised);background:var(--surface-raised);display:flex;align-items:center;justify-content:center;} 
+.profile-photo{width:100%;height:100%;object-fit:cover;display:block;} 
+.profile-links{display:flex;flex-direction:column;gap:12px;width:100%;} 
+.profile-button{width:100%;display:flex;flex-direction:column;align-items:flex-start;gap:6px;background:var(--surface-raised);border:1px solid rgba(255,255,255,.06);border-radius:16px;padding:14px 16px;text-decoration:none;color:var(--text);transition:transform .12s ease,background .12s ease;} 
+.profile-button__title{font-weight:700;font-size:16px;} 
+.profile-button__desc{color:var(--muted);font-size:14px;} 
+.profile-button:hover,.profile-button:focus-visible{background:rgba(255,255,255,.06);transform:translateY(-1px);} 
+.profile-button:active{transform:translateY(0);} 
+.profile-links a{box-shadow:0 16px 28px rgba(0,0,0,.28);} 
+.profile-hero .muted{margin:0;} 
