@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Personal Hub | Custom Profile</title>
+  <title>Personal Hub | Digital Business Card</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="A personal profile hub with a headline image, social buttons, and quick contact options.">
+  <meta name="description" content="A digital business card with a headline image, social buttons, and quick contact options.">
   <link rel="icon" type="image/png" href="images/favicon.png">
   <link rel="stylesheet" href="styles.css">
 </head>
@@ -34,7 +34,7 @@
   <section class="profile-hero" data-animate>
     <div class="wrap">
       <div class="profile-card">
-        <p class="muted" aria-label="Profile tagline">Custom profile hub</p>
+        <p class="muted" aria-label="Profile tagline">Digital Business Card</p>
         <h1 class="profile-name">Axel Colunga</h1>
         <div class="profile-photo-frame">
           <img src="images/your-name-headline.png" alt="Portrait of Axel Colunga" class="profile-photo">
@@ -93,6 +93,28 @@
         });
       },{threshold:.15,rootMargin:'0px 0px -80px'});
       elements.forEach(el=>observer.observe(el));
+
+      const frame=document.querySelector('.profile-photo-frame');
+      const photo=frame?.querySelector('.profile-photo');
+      const resetTilt=()=>{
+        if(!frame||!photo) return;
+        frame.style.transform='';
+        photo.style.transform='';
+        frame.classList.remove('tilt-active');
+      };
+      frame?.addEventListener('pointermove',(event)=>{
+        if(!frame||!photo) return;
+        const rect=frame.getBoundingClientRect();
+        const x=(event.clientX-rect.left)/rect.width;
+        const y=(event.clientY-rect.top)/rect.height;
+        const rotateY=(x-.5)*14;
+        const rotateX=(.5-y)*14;
+        frame.style.transform=`rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(6px)`;
+        photo.style.transform='translateZ(16px) scale(1.02)';
+        frame.classList.add('tilt-active');
+      });
+      frame?.addEventListener('pointerleave',resetTilt);
+      frame?.addEventListener('pointerup',resetTilt);
 
       const toggle=document.querySelector('.menu-toggle');
       const menu=document.getElementById('primary-nav');
